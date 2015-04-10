@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -21,7 +22,7 @@ import org.palaone.zeratul.server.domain.type.OrderStatus;
  *
  */
 @Entity
-@Table(name="UserOrder")
+@Table(name="user_order")
 public class Order {
 
 	@Id
@@ -29,24 +30,25 @@ public class Order {
 	private long id;
 
 	@ManyToOne
+	@JoinColumn(name = "order_user_id")
 	private User user;
 
-	@Column(nullable = false)
+	@Column(nullable = false, name = "order_msg")
 	private String orderMsg;
 
-	@Column(nullable = false)
+	@Column(nullable = false, name = "amt")
 	private BigDecimal amount;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, name = "order_time")
 	private Date orderTime;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, name = "order_target_time")
 	private Date orderDeliveryTargetTime;
 	
-	@Column
+	@Column(name = "order_delivered_time")
 	private Date orderDeliveredTime;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, name = "order_status")
 	private OrderStatus status = OrderStatus.FOR_BIDDING;
 	
 	private ContactDetails contactDetails;

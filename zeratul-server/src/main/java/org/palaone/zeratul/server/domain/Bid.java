@@ -11,14 +11,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 /**
  * @author palaone
  *
  */
 @Entity
+@Table(name = "bid")
 public class Bid {
 
 	@Id
@@ -26,20 +29,23 @@ public class Bid {
 	private long id;
 	
 	@ManyToOne
+	@JoinColumn(name="order_id")
 	private Order order;
 	
 	@OneToOne
+	@JoinColumn(name = "bid_user_id")
 	private User bidUser;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, name = "bid_amt")
 	private BigDecimal bidAmount;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, name = "bid_time")
 	private Date bidTime;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, name = "target_time")
 	private Date targetTime;
 	
+	@Column(name = "confirmed")
 	private boolean confirmed;
 	
 	private Position bidLocation;

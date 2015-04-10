@@ -13,11 +13,11 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class Position {
 
-	@Column
+	@Column(name = "longitude")
 	private double longitude;
 	
-	@Column
-	private double lattitude;
+	@Column(name = "latitude")
+	private double latitude;
 	
 	/**
 	 * @return the longitude
@@ -34,13 +34,13 @@ public class Position {
 	/**
 	 * @return the lattitude
 	 */
-	public double getLattitude() {
-		return lattitude;
+	public double getLatitude() {
+		return latitude;
 	}
 	/**
 	 * @param lattitude the lattitude to set
 	 */
-	public void setLattitude(double lattitude) {
-		this.lattitude = lattitude;
+	public void setLatitude(double lattitude) {
+		this.latitude = lattitude;
 	}
 }

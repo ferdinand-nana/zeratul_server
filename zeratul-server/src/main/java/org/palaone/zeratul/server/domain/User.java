@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import org.palaone.zeratul.server.domain.type.UserType;
 
@@ -18,19 +19,20 @@ import org.palaone.zeratul.server.domain.type.UserType;
  *
  */
 @Entity
+@Table(name="user")
 public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, name = "user_nm")
 	private String userName;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, name = "passwd")
 	private String password;
 	
-	@Column
+	@Column(name = "user_typ")
 	private UserType userType = UserType.USER;
 
 	private Position userPosition;

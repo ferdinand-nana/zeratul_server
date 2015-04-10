@@ -10,10 +10,10 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class ContactDetails {
 
-	@Column
+	@Column(name = "address")
 	private String address;
 	
-	@Column
+	@Column(name = "phone")
 	private String phoneNumber;
 	
 	public void setAddress(String address) {

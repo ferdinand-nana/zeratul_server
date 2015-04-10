@@ -5,17 +5,21 @@ package org.palaone.zeratul.server.domain;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  * @author palaone
  *
  */
 @Entity
+@Table(name="rating")
 public class Rating {
 
 	@Id
@@ -23,15 +27,20 @@ public class Rating {
 	private long id;
 	
 	@ManyToOne
+	@JoinColumn(name = "rater_user_id")
 	private User rater;
 	
 	@ManyToOne
+	@JoinColumn(name = "ratee_user_id")
 	private User ratee;
 	
+	@Column(name = "comment")
 	private String rateComment;
 	
+	@Column(name = "rate")
 	private float rate;
 	
+	@Column(name = "rate_dt")
 	private Date ratedDate;
 
 	/**
