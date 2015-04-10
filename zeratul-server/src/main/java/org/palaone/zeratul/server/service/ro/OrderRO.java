@@ -1,8 +1,6 @@
 package org.palaone.zeratul.server.service.ro;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -14,10 +12,11 @@ public class OrderRO implements Serializable {
 	private String title;
 	
 	@JsonProperty("time")
-	private Date time;
+	private String time;
 	
 	@JsonProperty("amount")
-	private BigDecimal amount;
+	private String amount;
+	
 	/**
 	 * @return the title
 	 */
@@ -33,25 +32,25 @@ public class OrderRO implements Serializable {
 	/**
 	 * @return the time
 	 */
-	public Date getTime() {
+	public String getTime() {
 		return time;
 	}
 	/**
 	 * @param time the time to set
 	 */
-	public void setTime(Date time) {
+	public void setTime(String time) {
 		this.time = time;
 	}
 	/**
 	 * @return the amount
 	 */
-	public BigDecimal getAmount() {
+	public String getAmount() {
 		return amount;
 	}
 	/**
 	 * @param amount the amount to set
 	 */
-	public void setAmount(BigDecimal amount) {
+	public void setAmount(String amount) {
 		this.amount = amount;
 	}
 }

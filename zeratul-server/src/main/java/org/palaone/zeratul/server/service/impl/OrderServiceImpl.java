@@ -3,6 +3,7 @@
  */
 package org.palaone.zeratul.server.service.impl;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import org.palaone.zeratul.server.service.OrderService;
@@ -26,7 +27,7 @@ public class OrderServiceImpl implements OrderService {
 		OrderVO orderVO = new OrderVO();
 		orderVO.setId(1);
 		orderVO.setTitle(orderRO.getTitle());
-		orderVO.setAmount(orderRO.getAmount());
+		orderVO.setAmount(new BigDecimal(orderRO.getAmount()));
 		orderVO.setTime(new Date());
 		return orderVO;
 	}
