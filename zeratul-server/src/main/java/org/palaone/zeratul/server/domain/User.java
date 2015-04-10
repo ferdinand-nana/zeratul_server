@@ -40,7 +40,7 @@ public class User {
 	private ContactDetails contactDetails;
 	
 	
-	@Column
+	@Column(name = "user_pos_time")
 	private Date userPositionTime;
 	
 //	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL, mappedBy="user")
