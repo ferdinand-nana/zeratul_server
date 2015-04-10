@@ -8,6 +8,7 @@ package org.palaone.zeratul.server.service.vo;
  *
  */
 public class UserVO {
+	private long id;
 	private String username;
 	private float rating;
 	private double longitude;
@@ -60,5 +61,17 @@ public class UserVO {
 	 */
 	public void setLatitude(double latitude) {
 		this.latitude = latitude;
+	}
+	/**
+	 * @return the id
+	 */
+	public long getId() {
+		return id;
+	}
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(long id) {
+		this.id = id;
 	}
 }

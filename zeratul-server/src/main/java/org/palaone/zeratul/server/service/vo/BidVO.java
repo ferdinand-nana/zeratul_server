@@ -11,6 +11,7 @@ import java.util.Date;
  *
  */
 public class BidVO {
+	private long id;
 	private BigDecimal amount;
 	private Date time;
 	private UserVO user;
@@ -49,5 +50,17 @@ public class BidVO {
 	 */
 	public void setUser(UserVO user) {
 		this.user = user;
+	}
+	/**
+	 * @return the id
+	 */
+	public long getId() {
+		return id;
+	}
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(long id) {
+		this.id = id;
 	}
 }
