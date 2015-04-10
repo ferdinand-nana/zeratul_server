@@ -55,8 +55,7 @@ public class OrderController {
 	@RequestMapping(method=RequestMethod.POST, value="/save")
 	@ResponseBody
 	public OrderVO saveOrder(@PathVariable long userId, @RequestBody OrderRO orderRO) {
-		OrderVO orderVO = orderService.save(orderRO);
-		return orderVO;
+		return orderService.save(userId, orderRO);
 	}
 
 	private List<OrderVO> findOrders() {
