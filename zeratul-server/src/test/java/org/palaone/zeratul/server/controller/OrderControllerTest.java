@@ -51,7 +51,7 @@ public class OrderControllerTest {
 	
 	@Test
 	public void testSaveOrder() throws Exception {
-		String body = "{\"title\":\"Sample Mesage\",\"time\":\"123456789\",\"amount\":\"10\"}";
+		String body = "{\"title\":\"Sample Mesage\",\"time\":\"" + System.currentTimeMillis() + "\",\"amount\":\"10\"}";
 		this.mvc.perform(post("/order/{userId}/save", 1L).contentType(MediaType.APPLICATION_JSON_VALUE).content(body)).andDo(print()).andExpect(status().isOk());
 	}
 
