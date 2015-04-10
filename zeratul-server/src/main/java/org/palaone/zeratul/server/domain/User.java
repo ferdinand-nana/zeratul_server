@@ -19,7 +19,7 @@ import org.palaone.zeratul.server.domain.type.UserType;
  *
  */
 @Entity
-@Table(name="user")
+@Table(name="users")
 public class User {
 
 	@Id
