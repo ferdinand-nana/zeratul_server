@@ -3,13 +3,18 @@
  */
 package org.palaone.zeratul.server.util;
 
-import org.palaone.zeratul.server.util.ZeratulUtils.Point;
+import org.palaone.zeratul.server.domain.Position;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author palaone
  *
  */
 public final class ZeratulUtils {
+	private static final Logger log = LoggerFactory
+			.getLogger(ZeratulUtils.class);
+	private static final double NO_RADIUS = 0;
 	private static final double EARTH_RADIUS_IN_METERS = 6371000;
 	/**
 	 * @author palaone
@@ -46,6 +51,19 @@ public final class ZeratulUtils {
 			return "Point [longitude=" + longitude + ", latitude=" + latitude
 					+ "]";
 		}
+	}
+	
+	public static boolean withinRadius(Position pos1, Position pos2, double radius) {
+		if (NO_RADIUS == radius) {
+			return true;
+		}
+		ZeratulUtils.Point p1 = new ZeratulUtils.Point(pos1.getLongitude(),
+				pos1.getLatitude());
+		ZeratulUtils.Point p2 = new ZeratulUtils.Point(pos2.getLongitude(),
+				pos2.getLatitude());
+		
+		log.info("P1: {} P2: {} and distance is {} and radius is {}",p1, p2, ZeratulUtils.getCircleDistance(p1, p2), radius);
+		return ZeratulUtils.getCircleDistance(p1, p2) <= radius;
 	}
 
 	public static double getCircleDistance(Point point1, Point point2) {
