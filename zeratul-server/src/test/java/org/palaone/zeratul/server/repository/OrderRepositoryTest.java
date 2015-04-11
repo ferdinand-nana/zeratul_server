@@ -79,6 +79,6 @@ public class OrderRepositoryTest {
 		
 		List<Order> orders = orderRepository.findByStatusAndUserIdNot(OrderStatus.FOR_BIDDING, 3);
 		assertNotNull(orders);
-		assertEquals(2, orders.size(), 0);
+		assertEquals(3, orders.size(), 0);
 	}
 }
