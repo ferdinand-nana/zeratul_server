@@ -7,7 +7,6 @@ import java.util.List;
 
 import org.palaone.zeratul.server.domain.type.OrderStatus;
 import org.palaone.zeratul.server.service.ro.OrderRO;
-import org.palaone.zeratul.server.service.ro.PositionRO;
 import org.palaone.zeratul.server.service.vo.OrderVO;
 
 /**

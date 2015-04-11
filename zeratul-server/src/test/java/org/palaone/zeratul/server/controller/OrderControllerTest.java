@@ -12,6 +12,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.palaone.zeratul.server.ZeratulServerApp;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.http.MediaType;
@@ -32,7 +34,8 @@ import org.springframework.web.context.WebApplicationContext;
 @ActiveProfiles("scratch")
 // Separate profile for web tests to avoid clashing databases
 public class OrderControllerTest {
-
+	private static final Logger log = LoggerFactory.getLogger(OrderControllerTest.class);
+	
 	@Autowired
 	private WebApplicationContext context;
 
@@ -52,6 +55,8 @@ public class OrderControllerTest {
 	@Test
 	public void testSaveOrder() throws Exception {
 		String body = "{\"title\":\"Sample Mesage\",\"time\":\"" + System.currentTimeMillis() + "\",\"amount\":\"10\"}";
+		log.info("Save Order Body: {}", body);
+		
 		this.mvc.perform(post("/order/{userId}/add", 1L).contentType(MediaType.APPLICATION_JSON_VALUE).content(body)).andDo(print()).andExpect(status().isOk());
 	}
 
