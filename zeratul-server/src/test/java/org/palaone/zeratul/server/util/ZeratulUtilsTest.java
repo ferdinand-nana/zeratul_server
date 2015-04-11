@@ -2,6 +2,7 @@ package org.palaone.zeratul.server.util;
 
 import static org.junit.Assert.*;
 
+import org.json.JSONException;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,7 +16,7 @@ public class ZeratulUtilsTest {
 	private static final double LATITUDE_2 = 14.6386;
 	
 	@Test
-	public void testGetCircleDistance() {
+	public void testGetCircleDistance() throws JSONException {
 		ZeratulUtils.Point point1 = new ZeratulUtils.Point(LONGITUDE_1, LATITUDE_1);
 		ZeratulUtils.Point point2 = new ZeratulUtils.Point(LONGITUDE_2, LATITUDE_2);
 		
