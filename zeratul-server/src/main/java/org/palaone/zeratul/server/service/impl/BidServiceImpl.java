@@ -18,11 +18,13 @@ import org.palaone.zeratul.server.service.ro.BidRO;
 import org.palaone.zeratul.server.service.util.ConverterUtils;
 import org.palaone.zeratul.server.service.vo.BidVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * @author palaone
  *
  */
+@Service
 public class BidServiceImpl implements BidService {
 	
 	@Autowired

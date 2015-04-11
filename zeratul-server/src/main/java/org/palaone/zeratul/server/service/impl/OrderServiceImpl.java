@@ -33,8 +33,6 @@ public class OrderServiceImpl implements OrderService {
 	private static final Logger log = LoggerFactory
 			.getLogger(OrderServiceImpl.class);
 
-	private static final double NO_RADIUS = 0;
-	
 	@Autowired
 	private OrderRepository orderRepository;
 
@@ -61,7 +59,7 @@ public class OrderServiceImpl implements OrderService {
 		Position userPosition = user.getUserPosition();
 		for (Order order : orders) {
 			if (user.getId() == order.getUser().getId()
-					|| withinRadius(userPosition, order.getUser()
+					|| ZeratulUtils.withinRadius(userPosition, order.getUser()
 							.getUserPosition(), radius)) {
 
 				OrderVO orderVO = ConverterUtils.convertToOrderVO(order);
@@ -71,19 +69,6 @@ public class OrderServiceImpl implements OrderService {
 			}
 		}
 		return vos;
-	}
-
-	private boolean withinRadius(Position pos1, Position pos2, double radius) {
-		if (NO_RADIUS == radius) {
-			return true;
-		}
-		ZeratulUtils.Point p1 = new ZeratulUtils.Point(pos1.getLongitude(),
-				pos1.getLatitude());
-		ZeratulUtils.Point p2 = new ZeratulUtils.Point(pos2.getLongitude(),
-				pos2.getLatitude());
-		
-		log.info("P1: {} P2: {} and distance is {} and radius is {}",p1, p2, ZeratulUtils.getCircleDistance(p1, p2), radius);
-		return ZeratulUtils.getCircleDistance(p1, p2) <= radius;
 	}
 
 	@Override
