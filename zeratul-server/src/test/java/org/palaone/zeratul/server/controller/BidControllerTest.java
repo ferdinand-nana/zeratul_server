@@ -33,11 +33,17 @@ import org.springframework.web.context.WebApplicationContext;
 @WebAppConfiguration
 @ActiveProfiles("scratch")
 // Separate profile for web tests to avoid clashing databases
-public class OrderControllerTest {
-	private static final Logger log = LoggerFactory.getLogger(OrderControllerTest.class);
+public class BidControllerTest {
+	private static final Logger log = LoggerFactory.getLogger(BidControllerTest.class);
 	
-	private static final String ORDERS_URL = "/users/{userId}/orders";
-	private static final long DEF_USER_ID = 1l;
+	private static final String BID_URL = "/users/{userId}/orders/{orderId}/bids";
+	private static final String ADD_BID_URL = "/users/{userId}/orders/{orderId}/bids/{bidUserId}";
+//	private static final long DEF_USER_ID = 1l;
+//	private static final long DEF_ORDER_ID = 1l;
+	private static final long DEF_USER_ID = 6l;
+	private static final long DEF_ORDER_ID = 6l;
+	private static final long DEF_BID_USER_ID = 5l;
+	
 	@Autowired
 	private WebApplicationContext context;
 
@@ -50,18 +56,16 @@ public class OrderControllerTest {
 	}
 	
 	@Test
-	public void testSaveOrder() throws Exception {
-		String body = "{\"title\":\"Sample Mesage\",\"time\":\"" + System.currentTimeMillis() + "\",\"amount\":\"10\"}";
-		log.info("Save Order Body: {}", body);
+	public void testUpdateUserPosition() throws Exception {
+		String body = "{\"amount\": \"800\",\"time\":\"1428738887045\",\"confirm\":\"false\"}";
+		log.info("Position: {}", body);
 		
-		this.mvc.perform(post(ORDERS_URL, DEF_USER_ID).contentType(MediaType.APPLICATION_JSON_VALUE).content(body)).andDo(print()).andExpect(status().isOk());
+		this.mvc.perform(post(ADD_BID_URL, DEF_USER_ID, DEF_ORDER_ID, DEF_BID_USER_ID).contentType(MediaType.APPLICATION_JSON_VALUE).content(body)).andDo(print()).andExpect(status().isOk());
 	}
 
 	@Test
-	public void testFindOrders() throws Exception {
-		this.mvc.perform(get(ORDERS_URL, DEF_USER_ID).contentType(MediaType.APPLICATION_JSON_VALUE)).andExpect(status().isOk()).andDo(print());
-		this.mvc.perform(get(ORDERS_URL, DEF_USER_ID).param("radius", "3000").contentType(MediaType.APPLICATION_JSON_VALUE)).andExpect(status().isOk()).andDo(print());
-//		this.mvc.perform(get("/order/1/find/1/1").contentType(MediaType.APPLICATION_JSON_VALUE)).andExpect(status().isOk());
+	public void testFindBids() throws Exception {
+		this.mvc.perform(get(BID_URL, DEF_USER_ID, DEF_ORDER_ID).contentType(MediaType.APPLICATION_JSON_VALUE)).andExpect(status().isOk()).andDo(print());
 	}
 
 }

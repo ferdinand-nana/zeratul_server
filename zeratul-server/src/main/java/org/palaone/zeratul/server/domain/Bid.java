@@ -161,4 +161,15 @@ public class Bid {
 	public void setBidLocation(Position bidLocation) {
 		this.bidLocation = bidLocation;
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Bid [id=" + id + ", order=" + order + ", bidUser=" + bidUser
+				+ ", bidAmount=" + bidAmount + ", bidTime=" + bidTime
+				+ ", targetTime=" + targetTime + ", confirmed=" + confirmed
+				+ ", bidLocation=" + bidLocation + "]";
+	}
 }

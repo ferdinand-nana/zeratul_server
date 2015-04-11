@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  *
  */
 @Controller
-@RequestMapping(value="{userId}/orders", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value="/users/{userId}/orders", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 public class OrderController {
 
 //	private static final double coordinates[][] = {{121.05774, 14.58318}, {121.03758, 14.6386}, {121.05977, 14.5856}, {121.05485, 14.58036}, {121.03037, 14.6553}};

@@ -17,6 +17,8 @@ import org.palaone.zeratul.server.service.BidService;
 import org.palaone.zeratul.server.service.ro.BidRO;
 import org.palaone.zeratul.server.service.util.ConverterUtils;
 import org.palaone.zeratul.server.service.vo.BidVO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +28,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class BidServiceImpl implements BidService {
+	private static final Logger log = LoggerFactory.getLogger(BidServiceImpl.class);
 	
 	@Autowired
 	private UserRepository userRepository;
@@ -56,11 +59,13 @@ public class BidServiceImpl implements BidService {
 	@Override
 	public BidVO save(long userId, long orderId, long bidId, BidRO bidRO) {
 		User user = userRepository.findOne(userId);
+		log.info("User: {}", user);
 		if (user == null) {
 			return new BidVO();
 		}
 		
 		Order order = orderRepository.findOne(orderId);
+		log.info("Order: {}", order);
 		if (order == null) {
 			return new BidVO();
 		}
@@ -81,16 +86,19 @@ public class BidServiceImpl implements BidService {
 	@Override
 	public List<BidVO> findBids(long userId, long orderId) {
 		User user = userRepository.findOne(userId);
+		log.info("User: {}", user);
 		if (user == null) {
 			return new ArrayList<BidVO>();
 		}
 		
 		Order order = orderRepository.findOne(orderId);
+		log.info("Order: {}", order);
 		if (order == null) {
 			return new ArrayList<BidVO>();
 		}
 		
 		List<Bid> bids = bidRepository.findByOrderId(orderId);
+		log.info("Bids: {}", bids);
 		return ConverterUtils.convertToBidVOs(bids);
 	}
 }

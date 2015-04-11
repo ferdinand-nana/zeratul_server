@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  *
  */
 @Controller
-@RequestMapping(value = "users/{userId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/users/{userId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 public class UserController {
 
 	private static final Logger log = LoggerFactory
@@ -37,7 +37,7 @@ public class UserController {
 
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseBody
-	public UserVO addOrder(@PathVariable long userId,
+	public UserVO updateUserPosition(@PathVariable long userId,
 			@RequestBody PositionRO posRO) {
 		log.info("Update position for user {}", userId);
 		return userService.savePosition(userId, posRO);

@@ -14,6 +14,7 @@ public class BidVO {
 	private long id;
 	private BigDecimal amount;
 	private Date time;
+	private boolean confirm;
 	private UserVO user;
 	/**
 	 * @return the amount
@@ -62,5 +63,26 @@ public class BidVO {
 	 */
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	/**
+	 * @return the confirm
+	 */
+	public boolean isConfirm() {
+		return confirm;
+	}
+	/**
+	 * @param confirm the confirm to set
+	 */
+	public void setConfirm(boolean confirm) {
+		this.confirm = confirm;
+	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "BidVO [id=" + id + ", amount=" + amount + ", time=" + time
+				+ ", confirm=" + confirm + ", user=" + user + "]";
 	}
 }

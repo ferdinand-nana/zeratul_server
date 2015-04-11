@@ -151,5 +151,16 @@ public class User {
 	public ContactDetails getContactDetails() {
 		return contactDetails;
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", userName=" + userName + ", password="
+				+ password + ", userType=" + userType + ", userPosition="
+				+ userPosition + ", contactDetails=" + contactDetails
+				+ ", userPositionTime=" + userPositionTime + "]";
+	}
 	
 }

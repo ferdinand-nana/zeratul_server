@@ -18,13 +18,15 @@ import org.palaone.zeratul.server.service.ro.OrderRO;
 import org.palaone.zeratul.server.service.vo.BidVO;
 import org.palaone.zeratul.server.service.vo.OrderVO;
 import org.palaone.zeratul.server.service.vo.UserVO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author palaone
  *
  */
 public final class ConverterUtils {
-
+	private static final Logger log = LoggerFactory.getLogger(ConverterUtils.class);
 	private static final float DEF_RATING = 4.5f;
 	
 	private ConverterUtils() {
@@ -67,6 +69,7 @@ public final class ConverterUtils {
 		}
 
 		List<BidVO> vos = new ArrayList<BidVO>();
+		log.info("Bids: {}", vos);
 		for (Bid bid : bids) {
 			vos.add(convertToBidVO(bid));
 		}
@@ -88,6 +91,7 @@ public final class ConverterUtils {
 		vo.setId(bid.getId());
 		vo.setAmount(bid.getBidAmount());
 		vo.setTime(bid.getTargetTime());
+		vo.setConfirm(bid.isConfirmed());
 		vo.setUser(ConverterUtils.convertToUserVO(bid.getBidUser()));
 		return vo;
 	}

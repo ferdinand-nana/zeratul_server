@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  *
  */
 @Controller
-@RequestMapping(value="{userId}/orders/{orderId}/bids", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value="/users/{userId}/orders/{orderId}/bids", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 public class BidController {
 
 	private static final Logger log = LoggerFactory.getLogger(BidController.class);
