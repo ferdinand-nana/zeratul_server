@@ -44,15 +44,15 @@ public class OrderControllerTest {
 	}
 
 	@Test
-	public void testHome() throws Exception {
-		this.mvc.perform(get("/order/1/find/1/1").contentType(MediaType.APPLICATION_JSON_VALUE)).andDo(print());
-		this.mvc.perform(get("/order/1/find/1/1").contentType(MediaType.APPLICATION_JSON_VALUE)).andExpect(status().isOk());
+	public void testFindOrders() throws Exception {
+		this.mvc.perform(get("/order/1/find/20000").contentType(MediaType.APPLICATION_JSON_VALUE)).andDo(print());
+//		this.mvc.perform(get("/order/1/find/1/1").contentType(MediaType.APPLICATION_JSON_VALUE)).andExpect(status().isOk());
 	}
 	
 	@Test
 	public void testSaveOrder() throws Exception {
 		String body = "{\"title\":\"Sample Mesage\",\"time\":\"" + System.currentTimeMillis() + "\",\"amount\":\"10\"}";
-		this.mvc.perform(post("/order/{userId}/save", 1L).contentType(MediaType.APPLICATION_JSON_VALUE).content(body)).andDo(print()).andExpect(status().isOk());
+		this.mvc.perform(post("/order/{userId}/add", 1L).contentType(MediaType.APPLICATION_JSON_VALUE).content(body)).andDo(print()).andExpect(status().isOk());
 	}
 
 }

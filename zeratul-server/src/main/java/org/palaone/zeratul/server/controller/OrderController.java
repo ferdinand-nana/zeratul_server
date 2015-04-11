@@ -9,8 +9,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
+import org.palaone.zeratul.server.domain.type.OrderStatus;
 import org.palaone.zeratul.server.service.OrderService;
 import org.palaone.zeratul.server.service.ro.OrderRO;
+import org.palaone.zeratul.server.service.ro.PositionRO;
 import org.palaone.zeratul.server.service.vo.BidVO;
 import org.palaone.zeratul.server.service.vo.OrderVO;
 import org.palaone.zeratul.server.service.vo.UserVO;
@@ -43,16 +45,18 @@ public class OrderController {
 	@Autowired
 	private OrderService orderService;
 	
-	@RequestMapping(method=RequestMethod.GET, value="/find/{longitude}/{latitude}")
+	@RequestMapping(method=RequestMethod.GET, value="/find/{radius}")
 	@ResponseBody
 	@Transactional(readOnly = true)
-	public List<OrderVO> findOrdersForBidding(@PathVariable double longitude, @PathVariable double latitude ) {
-		log.info("Finding orders for Postion: {}, {}", longitude, latitude);
-		List<OrderVO> orderVOs = findOrders();
-		return orderVOs;
+	public List<OrderVO> findOrdersForBidding(@PathVariable long userId, @PathVariable double radius) {
+//		return orderService.findOrders(userId, radius, OrderStatus.FOR_BIDDING, positionRO);
+		return orderService.findOrders(userId, radius, OrderStatus.FOR_BIDDING);
+//		log.info("Finding orders for Postion: {}, {}", positionRO.getLongitude(), positionRO.getLatitude());
+//		List<OrderVO> orderVOs = findOrders();
+//		return orderVOs;
 	}
 	
-	@RequestMapping(method=RequestMethod.POST, value="/save")
+	@RequestMapping(method=RequestMethod.POST, value="/add")
 	@ResponseBody
 	public OrderVO saveOrder(@PathVariable long userId, @RequestBody OrderRO orderRO) {
 		return orderService.save(userId, orderRO);

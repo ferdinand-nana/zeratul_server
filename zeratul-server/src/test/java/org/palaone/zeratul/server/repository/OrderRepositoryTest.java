@@ -3,9 +3,9 @@
  */
 package org.palaone.zeratul.server.repository;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.junit.Test;
@@ -14,6 +14,8 @@ import org.palaone.zeratul.server.ZeratulServerApp;
 import org.palaone.zeratul.server.domain.Order;
 import org.palaone.zeratul.server.domain.User;
 import org.palaone.zeratul.server.domain.type.OrderStatus;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -25,7 +27,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = ZeratulServerApp.class)
 public class OrderRepositoryTest {
-
+	private static final Logger log = LoggerFactory.getLogger(OrderRepositoryTest.class);
+	
 	@Autowired
 	private OrderRepository orderRepository;
 	
@@ -65,5 +68,17 @@ public class OrderRepositoryTest {
 		List<Order> confirmedOrders = orderRepository.findByStatusAndUserId(OrderStatus.CONFIRMED, user.getId());
 		assertNotNull(confirmedOrders);
 		assertTrue(confirmedOrders.size() > 0);
+	}
+	
+	@Test
+	public void findOrdersForBidding() {
+		log.info("Order count is {}", orderRepository.count());
+		for (Order o : orderRepository.findAll()) {
+			log.info(o.toString());
+		}
+		
+		List<Order> orders = orderRepository.findByStatusAndUserIdNot(OrderStatus.FOR_BIDDING, 3);
+		assertNotNull(orders);
+		assertEquals(2, orders.size(), 0);
 	}
 }

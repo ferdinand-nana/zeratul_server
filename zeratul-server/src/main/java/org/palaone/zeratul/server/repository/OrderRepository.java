@@ -15,6 +15,9 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface OrderRepository extends CrudRepository<Order, Long> {
 
+	List<Order> findByStatus(OrderStatus orderStatus);
+	
 	List<Order> findByStatusAndUserId(OrderStatus orderStatus, long id);
 	
+	List<Order> findByStatusAndUserIdNot(OrderStatus orderStatus, long id);
 }

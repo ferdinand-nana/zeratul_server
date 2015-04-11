@@ -10,6 +10,7 @@ public class OrderVO {
 	private Date time;
 	private BigDecimal amount;
 	private List<BidVO> bids;
+	private UserVO user;
 
 	/**
 	 * @return the orderMsg
@@ -79,5 +80,19 @@ public class OrderVO {
 	 */
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	/**
+	 * @return the user
+	 */
+	public UserVO getUser() {
+		return user;
+	}
+
+	/**
+	 * @param user the user to set
+	 */
+	public void setUser(UserVO user) {
+		this.user = user;
 	}
 }

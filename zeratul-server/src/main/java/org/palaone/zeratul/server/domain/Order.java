@@ -186,4 +186,16 @@ public class Order {
 	public void setContactDetails(ContactDetails contactDetails) {
 		this.contactDetails = contactDetails;
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Order [id=" + id + ", user=" + user + ", orderMsg=" + orderMsg
+				+ ", amount=" + amount + ", orderTime=" + orderTime
+				+ ", orderDeliveryTargetTime=" + orderDeliveryTargetTime
+				+ ", orderDeliveredTime=" + orderDeliveredTime + ", status="
+				+ status + ", contactDetails=" + contactDetails + "]";
+	}
 }
